@@ -97,22 +97,27 @@ var draw_nodes = function() {
 		});
 
 	// draw center of node for reference
-	new_nodes.append('circle').attr('r', 3).attr('cx', 0).attr('cy', 0).attr('fill', 'rgba(0, 0, 0, 0.3)'); // center point
-
 	var padding = {top: 0, left: 5};
-	var labels = new_nodes.append('text').attr('text-anchor', 'middle')
-		.attr('y', function(o) { return o.getHeight()/4; })
-		.text(function(o) { return o.val.v; });
-	new_nodes.insert('rect', 'text').attr('class', 'block')
-		.attr('x', function(o, i) { return -(labels[0][i].getBBox().width/2 + padding.left); })
-		.attr('y', function(o) { return -o.getHeight()/2; })
-		.attr('width', function(o, i) { return labels[0][i].getBBox().width + padding.left*2; })
-		.attr('height', function(o) { return o.getHeight(); });
-	new_nodes.append('circle').attr('class', 'red')
-		.attr('cx', function(o, i) { return -(labels[0][i].getBBox().width/2 + padding.left); })
-		.attr('cy', function(o) { return -o.getHeight()/2; })
-		.attr('r', (X.letterW/3*2).toFixed(4))
-		.on('click', function(o, i) { remove_node(o, i); });
+	new_nodes.each(function(o, i) {
+		var el = d3.select(this);
+
+		var center = el.append('circle').attr('class', 'center').attr('r', 3).attr('cx', 0).attr('cy', 0).attr('fill', 'rgba(0, 0, 0, 0.3)'); // center point
+		var text = el.append('text').attr('text-anchor', 'middle')
+			.attr('y', o.getHeight()/4)
+			.text(o.val.v);
+		var textWidth = text.node().getBBox().width;
+		var textHeight = o.getHeight();
+		var rect = el.insert('rect', 'circle.center').attr('class', 'block') // insert to back of g
+			.attr('x', -(textWidth/2 + padding.left))
+			.attr('y', -textHeight/2)
+			.attr('width', textWidth + padding.left*2)
+			.attr('height', textHeight);
+		var close = el.append('circle').attr('class', 'red')
+			.attr('cx', -(textWidth/2 + padding.left))
+			.attr('cy', -textHeight/2)
+			.attr('r', (X.letterW/3*2).toFixed(4))
+			.on('click', function(o, i) { remove_node(o, i); });
+	});
 
 	// exit
 	var old_nodes = nodes.exit();
