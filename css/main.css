@@ -2,7 +2,7 @@
   box-sizing: border-box; }
 
 html, body, p, li, input, select, option, textarea, text {
-  font-family: "Source Serif Pro", "Kozuka Mincho Pro R", serif;
+  font-family: "Source Serif Pro", "Kozuka Mincho Pro", "Hiragino Mincho Pro", serif;
   font-size: 13px; }
 
 div, form, svg {
