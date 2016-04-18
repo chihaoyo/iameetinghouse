@@ -1,9 +1,9 @@
 // data
-var root_ = new Firebase('https://resplendent-fire-8362.firebaseio.com/iameetinghouse/');
+var root_ = new Firebase('https://iameetinghouse.firebaseio.com/');
 var initialized = false;
 
 var nodes_local = {};
-var nodes_ = root_.child('nodes2');
+var nodes_ = root_.child('nodes');
 nodes_.once('value', function(snapshot) {
 	console.log('nodes on value');
 	// this executes when app first launched locally, right?
