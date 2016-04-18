@@ -1,4 +1,0 @@
-form { display: none; }
-div#canvas { margin: 400px 0; }
-div#canvas svg { -webkit-transform: rotate(180deg); }
-.node .red { display: none !important; }
