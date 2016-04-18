@@ -12,8 +12,7 @@ div, form, svg {
 
 body {
   margin: 0;
-  background: #ccc;
-  color: white; }
+  background: #ccc; }
 
 form {
   position: fixed;
