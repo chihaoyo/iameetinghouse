@@ -9,16 +9,16 @@ var svg = null;
 var init = function() {
 	X.docW = $document.width();
 	X.docH = $document.height();
-	
+
 	X.fontSize = 13.0;
 	X.letterW = +(X.fontSize*0.62).toFixed(4);
 	X.lineH = +(X.fontSize*1.25).toFixed(4);
-	
+
 	X.canvasW = +X.docW*0.99.toFixed();
 	X.canvasH = +(X.docH - 6*X.fontSize)*0.95.toFixed(); // exclude top & bottom margin: 3em
-	
+
 	console.log(X);
-	
+
 	svg = d3.select('svg');
 	svg.attr('width', X.canvasW).attr('height', X.canvasH);
 };
@@ -36,7 +36,7 @@ var make_node = function(c, v) {
 // http://stackoverflow.com/questions/6989100/sort-points-in-clockwise-order
 var draw_frame = function() {
 	svg.selectAll('.frame').remove();
-	
+
 	var coors = [];
 	for(i in nodes_local) {
 		var node = nodes_local[i];
@@ -45,20 +45,20 @@ var draw_frame = function() {
 	}
 	var sortClockwise = function(a, b) { return a.p*b.q - b.p*a.q; };
 	coors.sort(sortClockwise);
-	
+
 	var XY0 = coorXY(0, 0);
-	
+
 	// draw border
 	svg.insert('polygon', ':first-child')
 		.attr('class', 'frame border')
 		.attr('points', coors.map(function(n) { var XY = coorXY(n.p, n.q); return [XY.x, XY.y].join(','); }).join(' '));
-		
+
 	// draw origin
 	svg.insert('circle', ':first-child')
 		.attr('class', 'frame origin')
 		.attr('r', +(X.fontSize*0.2).toFixed())
 		.attr('cx', XY0.x).attr('cy', XY0.y)
-	
+
 	// draw axes
 	for(var i = 0; i < coors.length; i++) {
 		var XY = coorXY(coors[i].p, coors[i].q);
@@ -87,7 +87,7 @@ var draw_nodes = function() {
 			var XY = coorXY(o.val.p, o.val.q);
 			o.x = XY.x;
 			o.y = XY.y;
-			return 'translate(' + o.x.toFixed() + ',' + o.y.toFixed() + ')'; 
+			return 'translate(' + o.x.toFixed() + ',' + o.y.toFixed() + ')';
 		})
 		.on('mouseover', function(o, i) {
 			d3.select(this).classed('focus', true);
@@ -95,30 +95,30 @@ var draw_nodes = function() {
 		.on('mouseout', function(o) {
 			d3.select(this).classed('focus', false);
 		});
-		
-	new_nodes.append('rect').attr('class', 'block')
-		.attr('x', function(o) { return -o.getWidth()/2; })
-		.attr('y', function(o) { return -o.getHeight()/2; })
-		.attr('width', function(o) { return o.getWidth(); })
-		.attr('height', function(o) { return o.getHeight(); });
-		
+
 	// draw center of node for reference
-	new_nodes.append('circle').attr('r', 3).attr('cx', 0).attr('cy', 0).attr('fill', 'rgba(0, 0, 0, 0.5)'); // center point
-	
-	new_nodes.append('text').attr('text-anchor', 'middle')
+	new_nodes.append('circle').attr('r', 3).attr('cx', 0).attr('cy', 0).attr('fill', 'rgba(0, 0, 0, 0.3)'); // center point
+
+	var padding = {top: 0, left: 5};
+	var labels = new_nodes.append('text').attr('text-anchor', 'middle')
 		.attr('y', function(o) { return o.getHeight()/4; })
 		.text(function(o) { return o.val.v; });
+	new_nodes.insert('rect', 'text').attr('class', 'block')
+		.attr('x', function(o, i) { return -(labels[0][i].getBBox().width/2 + padding.left); })
+		.attr('y', function(o) { return -o.getHeight()/2; })
+		.attr('width', function(o, i) { return labels[0][i].getBBox().width + padding.left*2; })
+		.attr('height', function(o) { return o.getHeight(); });
 	new_nodes.append('circle').attr('class', 'red')
-		.attr('cx', function(o) { return -o.getWidth()/2; })
+		.attr('cx', function(o, i) { return -(labels[0][i].getBBox().width/2 + padding.left); })
 		.attr('cy', function(o) { return -o.getHeight()/2; })
 		.attr('r', (X.letterW/3*2).toFixed(4))
 		.on('click', function(o, i) { remove_node(o, i); });
-	
+
 	// exit
 	var old_nodes = nodes.exit();
 	console.log('draw_nodes: removing ' + old_nodes.size() + ' nodes');
 	old_nodes.remove();
-	
+
 	// draw frame
 	draw_frame();
 
