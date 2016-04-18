@@ -53,18 +53,19 @@ div#canvas {
 	cursor: pointer;
 }
 .node .block { fill: blue; }
+.node.organization .block { fill: MediumBlue; }
 .node.project .block { fill: lime; }
 .node.place .block { fill: fuchsia; }
 .node.issue .block { fill: red; }
 .node.concept .block { fill: white; }
-.node.cornerstone .block { fill: white; }
+.node.cornerstone .block { fill: black; }
 
 .node text { fill: black; }
 .node.human text, .node.organism text, .node.organization text { fill: lime; }
 .node.project text { fill: blue; }
 .node.place text { fill: lime; }
 .node.concept text { fill: blue; }
-.node.cornerstone text { font-weight: bold; }
+.node.cornerstone text { fill: white; font-weight: bold; }
 
 .node.negated .block { fill: $backgroundColor; stroke-width: 3; stroke: #444; }
 .node.negated text { fill: #444; }
@@ -82,11 +83,12 @@ div#canvas {
 
 #input { width: 12em; background-color: blue;}
 #input[category='human'], #input[category='organism'], #input[category='organization'] { color: lime; }
+#input[category='organization'] { background-color: MediumBlue; }
 #input[category='project'] { background-color: lime; color: blue; }
 #input[category='place'] { background-color: fuchsia; color: lime; }
 #input[category='issue'] { background-color: red; }
 #input[category='concept'] { background-color: white; color: blue; }
-#input[category='cornerstone'] { background-color: white; font-weight: bold; }
+#input[category='cornerstone'] { background-color: black; color: white; font-weight: bold; }
 
 .frame.origin { fill: #777; }
 .frame.axis { fill: none; stroke: #777; stroke-width: 0.2em; }

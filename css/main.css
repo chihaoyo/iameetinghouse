@@ -55,6 +55,9 @@ div#canvas {
 .node .block {
   fill: blue; }
 
+.node.organization .block {
+  fill: MediumBlue; }
+
 .node.project .block {
   fill: lime; }
 
@@ -68,7 +71,7 @@ div#canvas {
   fill: white; }
 
 .node.cornerstone .block {
-  fill: white; }
+  fill: black; }
 
 .node text {
   fill: black; }
@@ -86,6 +89,7 @@ div#canvas {
   fill: blue; }
 
 .node.cornerstone text {
+  fill: white;
   font-weight: bold; }
 
 .node.negated .block {
@@ -119,6 +123,9 @@ div#canvas {
 #input[category='human'], #input[category='organism'], #input[category='organization'] {
   color: lime; }
 
+#input[category='organization'] {
+  background-color: MediumBlue; }
+
 #input[category='project'] {
   background-color: lime;
   color: blue; }
@@ -135,7 +142,8 @@ div#canvas {
   color: blue; }
 
 #input[category='cornerstone'] {
-  background-color: white;
+  background-color: black;
+  color: white;
   font-weight: bold; }
 
 .frame.origin {
