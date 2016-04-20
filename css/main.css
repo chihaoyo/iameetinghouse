@@ -72,10 +72,12 @@ div#canvas {
 .node.cornerstone .block {
   fill: black; }
 
-.node text {
-  fill: black; }
+.node.negated .block {
+  fill: #ccc;
+  stroke-width: 3;
+  stroke: #444; }
 
-.node.human text, .node.organism text, .node.organization text {
+.node text {
   fill: lime; }
 
 .node.project text {
@@ -84,6 +86,9 @@ div#canvas {
 .node.place text {
   fill: lime; }
 
+.node.issue text {
+  fill: black; }
+
 .node.concept text {
   fill: blue; }
 
@@ -91,19 +96,14 @@ div#canvas {
   fill: white;
   font-weight: bold; }
 
-.node.negated .block {
-  fill: #ccc;
-  stroke-width: 3;
-  stroke: #444; }
-
 .node.negated text {
   fill: #444; }
 
 .node .red {
+  display: none;
   fill: red;
   stroke: #cc0000;
-  stroke-weight: 1px;
-  display: none; }
+  stroke-weight: 1px; }
 
 .node.focus .red {
   display: block; }
