@@ -116,11 +116,9 @@ div#canvas {
   background: none; }
 
 #input {
-  width: 12em;
-  background-color: blue; }
-
-#input[category='human'], #input[category='organism'], #input[category='organization'] {
-  color: lime; }
+  background-color: blue;
+  color: lime;
+  width: 12em; }
 
 #input[category='organization'] {
   background-color: MediumBlue; }
@@ -134,7 +132,8 @@ div#canvas {
   color: lime; }
 
 #input[category='issue'] {
-  background-color: red; }
+  background-color: red;
+  color: black; }
 
 #input[category='concept'] {
   background-color: white;
@@ -147,12 +146,10 @@ div#canvas {
 
 .frame.origin {
   fill: #777; }
-
 .frame.axis {
   fill: none;
   stroke: #777;
   stroke-width: 0.2em; }
-
 .frame.border {
   fill: none;
   stroke: #aaa;

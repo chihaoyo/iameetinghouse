@@ -90,15 +90,16 @@ div#canvas {
 	background: none;
 }
 
-#input { width: 12em; background-color: blue;}
-#input[category='human'], #input[category='organism'], #input[category='organization'] { color: lime; }
-#input[category='organization'] { background-color: MediumBlue; }
-#input[category='project'] { background-color: lime; color: blue; }
-#input[category='place'] { background-color: fuchsia; color: lime; }
-#input[category='issue'] { background-color: red; }
-#input[category='concept'] { background-color: white; color: blue; }
-#input[category='cornerstone'] { background-color: black; color: white; font-weight: bold; }
+#input							{ background-color: blue; color: lime; width: 12em; }
+#input[category='organization']	{ background-color: MediumBlue; }
+#input[category='project']		{ background-color: lime; color: blue; }
+#input[category='place']		{ background-color: fuchsia; color: lime; }
+#input[category='issue']		{ background-color: red; color: black; }
+#input[category='concept']		{ background-color: white; color: blue; }
+#input[category='cornerstone']	{ background-color: black; color: white; font-weight: bold; }
 
-.frame.origin { fill: #777; }
-.frame.axis { fill: none; stroke: #777; stroke-width: 0.2em; }
-.frame.border { fill: none; stroke: #aaa; stroke-width: 0.8em; stroke-linejoin: round; stroke-linecap: square; }
+.frame {
+	&.origin	{ fill: #777; }
+	&.axis		{ fill: none; stroke: #777; stroke-width: 0.2em; }
+	&.border	{ fill: none; stroke: #aaa; stroke-width: 0.8em; stroke-linejoin: round; stroke-linecap: square; }
+}
