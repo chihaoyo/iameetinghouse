@@ -12,7 +12,8 @@ div, form, svg {
 
 body {
   margin: 0;
-  background: #ccc; }
+  background: #333;
+  color: white; }
 
 form {
   position: fixed;
@@ -73,9 +74,9 @@ div#canvas {
   fill: black; }
 
 .node.negated .block {
-  fill: #ccc;
+  fill: #333;
   stroke-width: 3;
-  stroke: #444; }
+  stroke: #808080; }
 
 .node text {
   fill: lime; }
@@ -97,12 +98,12 @@ div#canvas {
   font-weight: bold; }
 
 .node.negated text {
-  fill: #444; }
+  fill: #808080; }
 
 .node .red {
   display: none;
   fill: red;
-  stroke: #cc0000;
+  stroke: #c00;
   stroke-weight: 1px; }
 
 .node.focus .red {
@@ -145,14 +146,14 @@ div#canvas {
   font-weight: bold; }
 
 .frame.origin {
-  fill: #777; }
+  fill: #555; }
 .frame.axis {
   fill: none;
-  stroke: #777;
+  stroke: #555;
   stroke-width: 0.2em; }
 .frame.border {
   fill: none;
-  stroke: #aaa;
+  stroke: #606060;
   stroke-width: 0.8em;
   stroke-linejoin: round;
   stroke-linecap: square; }
